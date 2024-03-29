@@ -1,0 +1,50 @@
+[gd_scene load_steps=9 format=3 uid="uid://d01x4gnjyislr"]
+
+[ext_resource type="PackedScene" uid="uid://cc1m2a1obsyn4" path="res://quality-godot-first-person-2-3349efe6bbee35f23c8325a56aee75809d089a5f/addons/fpc/character.tscn" id="1_3ib2f"]
+[ext_resource type="Texture2D" uid="uid://gd56sn5bdsd4" path="res://addons/kenney_prototype_textures/dark/texture_02.png" id="1_aehtc"]
+[ext_resource type="PackedScene" uid="uid://dmu3kdjggud7" path="res://tunnel_hole_2.glb" id="2_hpyaj"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6hh8b"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_kp2mc"]
+sky_material = SubResource("ProceduralSkyMaterial_6hh8b")
+
+[sub_resource type="Environment" id="Environment_5j5jb"]
+background_mode = 2
+sky = SubResource("Sky_kp2mc")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1wofd"]
+albedo_texture = ExtResource("1_aehtc")
+uv1_triplanar = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_7h5y7"]
+size = Vector2(20, 20)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_5j5jb")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="."]
+material_override = SubResource("StandardMaterial3D_1wofd")
+use_collision = true
+mesh = SubResource("PlaneMesh_7h5y7")
+
+[node name="Character" parent="." instance=ExtResource("1_3ib2f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 3)
+default_reticle = "res://quality-godot-first-person-2-3349efe6bbee35f23c8325a56aee75809d089a5f/addons/fpc/reticles/reticle_0.tscn"
+LEFT = "move_left"
+RIGHT = "move_right"
+FORWARD = "move_forward"
+BACKWARD = "move_backward"
+
+[node name="tunnel_hole_22" parent="." instance=ExtResource("2_hpyaj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -2)
