@@ -41,6 +41,7 @@ mesh = SubResource("PlaneMesh_7h5y7")
 [node name="Character" parent="." instance=ExtResource("1_3ib2f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 3)
 default_reticle = "res://quality-godot-first-person-2-3349efe6bbee35f23c8325a56aee75809d089a5f/addons/fpc/reticles/reticle_0.tscn"
+JUMP = "jump"
 LEFT = "move_left"
 RIGHT = "move_right"
 FORWARD = "move_forward"
